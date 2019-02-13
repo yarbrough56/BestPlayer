@@ -3,7 +3,9 @@
 #shot-chart {
     width: 100%;
     margin: auto;
+    margin-top: -50px;
 }
+
 
 /********SHOTCHART COURT STYLES****** */
 #shot-chart-container {

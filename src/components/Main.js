@@ -2,32 +2,42 @@ import React from 'react';
 import { DataViewContainer } from './DataViewContainer';
 import nba from 'nba'
 import { Profile } from './Profile';
-import {SearchBar} from "./SearchBar"
+import {SearchBar} from "./SearchBar";
+import { DEFAULT_PLAYER_INFO} from  '../constants';
 
 
 export class Main extends React.Component {
     state = {
-        playerInfo: {
-            playerId: nba.findPlayer('Stephen Curry').playerId,
-            teamAbbreviation: 'GSW',
-        }
+        playerInfo: DEFAULT_PLAYER_INFO,
+
     }
 
     componentDidMount() {
-        this.loadPlayerInfo("Stephen Curry");
+        this.loadPlayerInfo(this.state.playerInfo.fullName);
     }
+
+    // loadPlayerInfo = (playerName) => {
+    //     const playerId = nba.findPlayer(playerName).playerId;
+    //     nba.stats.playerInfo({ PlayerID: playerId }).then((response) => {
+    //
+    //         const playerInfo = Object.assign(
+    //             {},response.commonPlayerInfo[0], response.playerHeadlineStats[0]
+    //         );
+    //
+    //         this.setState({
+    //             playerInfo
+    //         });
+    //     });
+    // }
 
     loadPlayerInfo = (playerName) => {
         const playerId = nba.findPlayer(playerName).playerId;
-        nba.stats.playerInfo({ PlayerID: playerId }).then((response) => {
-
+        nba.stats.playerInfo({ PlayerID: playerId })
+            .then((info) => {
             const playerInfo = Object.assign(
-                {},response.commonPlayerInfo[0], response.playerHeadlineStats[0]
-            );
+                info.commonPlayerInfo[0], info.playerHeadlineStats[0]);
 
-            this.setState({
-                playerInfo
-            });
+            this.setState({ playerInfo });
         });
     }
 

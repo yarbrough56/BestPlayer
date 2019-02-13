@@ -16,17 +16,18 @@ export class SearchBar extends React.Component {
         this.setState({
             dataSource: !value ? [] : nba.searchPlayers(value).map(
                 //key ==>
-                ({fullName,playerId}) => (<Option key={playerId} value={fullName}>
-                    <img className="player-option-image"
-                        src={`${PROFILE_PIC_URL_PREFIX}/${playerId}.png`}
-                         alt="profile-image"
-                    />
-                    <span className="player-option-label">
-                        {fullName}
-                    </span>span>
+                ({fullName,playerId}) => (
+                    <Option key={playerId} value={fullName}>
+                        <img className="player-option-image"
+                            src={`${PROFILE_PIC_URL_PREFIX}/${playerId}.png`}
+                             alt="profile-image"
+                        />
+                        <span className="player-option-label">
+                            {fullName}
+                        </span>
 
 
-                </Option>)
+                     </Option>)
             ),
         });
     }
@@ -39,7 +40,8 @@ export class SearchBar extends React.Component {
     render() {
         const { dataSource } = this.state;
         return (
-            <AutoComplete className="search-bar"
+            <AutoComplete
+                className="search-bar"
                 dataSource={dataSource}
 
                 onSelect={this.onSelect}
