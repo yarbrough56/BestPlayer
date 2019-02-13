@@ -8,6 +8,7 @@ import { DEFAULT_PLAYER_INFO} from  '../constants';
 
 export class Main extends React.Component {
     state = {
+        // Object with ID, info, and abbrev
         playerInfo: DEFAULT_PLAYER_INFO,
 
     }
@@ -16,29 +17,14 @@ export class Main extends React.Component {
         this.loadPlayerInfo(this.state.playerInfo.fullName);
     }
 
-    // loadPlayerInfo = (playerName) => {
-    //     const playerId = nba.findPlayer(playerName).playerId;
-    //     nba.stats.playerInfo({ PlayerID: playerId }).then((response) => {
-    //
-    //         const playerInfo = Object.assign(
-    //             {},response.commonPlayerInfo[0], response.playerHeadlineStats[0]
-    //         );
-    //
-    //         this.setState({
-    //             playerInfo
-    //         });
-    //     });
-    // }
-
     loadPlayerInfo = (playerName) => {
         const playerId = nba.findPlayer(playerName).playerId;
+        //api call
         nba.stats.playerInfo({ PlayerID: playerId })
             .then((info) => {
-            const playerInfo = Object.assign(
-                info.commonPlayerInfo[0], info.playerHeadlineStats[0]);
-
-            this.setState({ playerInfo });
-        });
+                const playerInfo = Object.assign(info.commonPlayerInfo[0], info.playerHeadlineStats[0]);
+                this.setState({ playerInfo });
+            });
     }
 
     render() {
