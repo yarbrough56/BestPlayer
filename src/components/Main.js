@@ -24,7 +24,9 @@ export class Main extends React.Component {
             .then((info) => {
                 const playerInfo = Object.assign(info.commonPlayerInfo[0], info.playerHeadlineStats[0]);
                 this.setState({ playerInfo });
-            });
+            }).catch((e) => {
+                console.log(e);
+        });
     }
 
     render() {

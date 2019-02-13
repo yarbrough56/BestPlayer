@@ -14,7 +14,8 @@ export class ShotChart extends React.Component {
         chartType: PropTypes.string,
         displayTooltip: PropTypes.bool,
     }
-    // not component didMount
+
+    // not component didMount, every componentUpdate will call api again
     componentDidUpdate() {
         nba.stats.shots({
             PlayerID: this.props.playerId
@@ -36,6 +37,8 @@ export class ShotChart extends React.Component {
             displayType(this.props.chartType);
             courtSelection.call(chart_court);
             courtSelection.datum(final_shots).call(chart_shots);
+        }).catch((e) => {
+            console.log(e);
         });
     }
     render() {
