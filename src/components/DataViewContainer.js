@@ -25,6 +25,7 @@ export class DataViewContainer extends React.Component {
         this.setState({ displayTooltip });
     }
 
+    /*debounce improve the perfomance, only when user stop*/
     render() {
         return (
             <div className="data-view">
@@ -39,6 +40,7 @@ export class DataViewContainer extends React.Component {
                         <Row className="filter-row">
                             <Col span={2} offset={3} className="filter-label">Shots:</Col>
                             <Col span={16}>
+
                                 <CountSlider onMinCountChange={_.debounce(this.onMinCountChange, 500)} className="filter-control" />
                             </Col>
                         </Row>
