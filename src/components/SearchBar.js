@@ -12,10 +12,10 @@ export class SearchBar extends React.Component {
         dataSource: [],
     }
 
+    // nab api auto search the value, handle search here is only for view render
     handleSearch = (value) => {
         this.setState({
             dataSource: !value ? [] : nba.searchPlayers(value).map(
-                //key ==>
                 ({fullName,playerId}) => (
                     <Option key={playerId} value={fullName}>
                         <img className="player-option-image"

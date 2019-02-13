@@ -2,7 +2,7 @@ import React from 'react';
 import { Slider, InputNumber, Row, Col } from 'antd';
 
 export class CountSlider extends React.Component {
-    // shared by input box and slider
+    // shared by input box and slider bar
     state = {
         inputValue: 2,
     }
